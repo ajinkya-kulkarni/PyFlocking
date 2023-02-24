@@ -338,7 +338,7 @@ def plot_particles(df, Xmin, Xmax, Ymin, Ymax, titlename, imgfile):
 		circle = plt.Circle((x, y), circle_size, facecolor='tab:orange', edgecolor='black', alpha = 0.8, lw=0.8, zorder=1)
 		ax.add_artist(circle)
 		# ax.arrow(x, y, 0.05 * magnitude/2 * np.sin(angle), 0.05 * magnitude/2 * np.cos(angle), color=color, width=0.002, head_width=0.01, length_includes_head=True, zorder=2)
-		ax.arrow(x, y, circle_size, circle_size, color=color, width=0.002, head_width=0.01, length_includes_head=True, zorder=2)
+		ax.arrow(x, y, 2*circle_size, 2*circle_size, color=color, width=0.002, head_width=0.01, length_includes_head=True, zorder=2)
 
 	# Set plot limits and title
 	ax.set_xlim(Xmin, Xmax)
