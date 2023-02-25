@@ -1,7 +1,7 @@
 # Viscek Model Simulation
 
 ## Introduction
-The Viscek model is a system of N self-propelled particles moving in 2D space. The particles align their velocities with those of their neighbors within a certain radius of influence. The model exhibits collective behavior such as swarming and phase transitions as the density of particles and the radius of influence are varied. This implementation allows the user to simulate the Viscek model and output a .gif animation of the particles' motion over time.
+The Viscek model is a system of N self-propelled particles moving in 2D space. The particles align their velocities with those of their neighbors within a certain radius of influence. The model exhibits collective behavior such as swarming and phase transitions as the density of particles and the radius of influence are varied. This implementation allows the user to simulate the Viscek model and output a `.gif` animation of the particles' motion over time.
 
 ## Installation
 To run the simulation, you will need to have the following dependencies installed:
