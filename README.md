@@ -20,7 +20,7 @@ The output of the simulation is a .gif animation of the particles' motion over t
 ## Usage
 To run the simulation, follow these steps:
 1. Adjust the simulation parameters in the `parameters.py` file.
-2. Run the `viscek_model.py` script.
+2. Run the `MainProgram.py` script.
 3. The output animation will be saved as `animation.gif` in the working directory.
 
 You can adjust the following parameters in the `parameters.py` file:
