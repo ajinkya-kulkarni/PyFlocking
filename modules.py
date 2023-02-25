@@ -195,10 +195,10 @@ def time_update(particles, rad_influence, eta, Pspeed, deltat, bcond, Xmin, Xmax
 	'''
 
 	# Loop through each particle in the list
-	for ap in particles:
+	for single_particle in particles:
 		
 		# Find neighbors of the particle within the radius of influence
-		all_neighbors = get_neighbors(ap, particles, rad_influence)
+		all_neighbors = get_neighbors(single_particle, particles, rad_influence)
 		
 		# Calculate the average velocity of the neighbors
 		avg_theta = get_average(all_neighbors)
@@ -207,18 +207,18 @@ def time_update(particles, rad_influence, eta, Pspeed, deltat, bcond, Xmin, Xmax
 		randnoise = np.random.uniform(-np.pi, np.pi, size=1)
 		
 		# Set the new particle direction (theta)
-		ap.theta = avg_theta + randnoise * eta
+		single_particle.theta = avg_theta + randnoise * eta
 		
 		# Calculate the new velocity components (vx and vy) using the speed (Pspeed) and direction (theta)
-		ap.vx = Pspeed * np.cos(ap.theta)
-		ap.vy = Pspeed * np.sin(ap.theta)
+		single_particle.vx = Pspeed * np.cos(single_particle.theta)
+		single_particle.vy = Pspeed * np.sin(single_particle.theta)
 
 		# Update the particle position using the velocity components and the time step (deltat)
-		ap.x = ap.x + ap.vx * deltat
-		ap.y = ap.y + ap.vy * deltat
+		single_particle.x = single_particle.x + single_particle.vx * deltat
+		single_particle.y = single_particle.y + single_particle.vy * deltat
 
 		# Set boundary conditions using the boundaryconditions function
-		ap = boundaryconditions(ap, bcond, Xmin, Xmax, Ymin, Ymax)
+		single_particle = boundaryconditions(single_particle, bcond, Xmin, Xmax, Ymin, Ymax)
 
 	# Return the updated list of particles
 	return particles
@@ -294,7 +294,7 @@ def boundaryconditions(particle, btype, Xmin, Xmax, Ymin, Ymax):
 
 ########################################################################################
 
-def plot_particles(df, Xmin, Xmax, Ymin, Ymax, titlename, imgfile):
+def plot_particles(df, Xmin, Xmax, Ymin, Ymax, titlename, imgfile, rad_influence):
 	"""
 	Plots the particles in the dataframe as black circles with a white interior,
 	with the velocity vectors represented by front arrows of varying color.
@@ -333,23 +333,25 @@ def plot_particles(df, Xmin, Xmax, Ymin, Ymax, titlename, imgfile):
 	
 	# Plot circles and arrows
 	fig, ax = plt.subplots(figsize = (5, 5), constrained_layout = True)
+	
 	for x, y, angle, magnitude, color in zip(df['x'], df['y'], angles, magnitudes, colors):
 		circle_size = 0.02
-		circle = plt.Circle((x, y), circle_size, facecolor='tab:orange', edgecolor='black', alpha = 0.8, lw=0.8, zorder=1)
+		circle = plt.Circle((x, y), circle_size, facecolor='tab:orange', edgecolor=None, alpha = 0.8, lw=0.8, zorder=1)
 		ax.add_artist(circle)
+
 		# ax.arrow(x, y, 0.05 * magnitude/2 * np.sin(angle), 0.05 * magnitude/2 * np.cos(angle), color=color, width=0.002, head_width=0.01, length_includes_head=True, zorder=2)
-		ax.arrow(x, y, 2*circle_size, 2*circle_size, color=color, width=0.002, head_width=0.01, length_includes_head=True, zorder=2)
+		ax.arrow(x, y, 2*circle_size* np.sin(angle), 2*circle_size* np.cos(angle), color='black', alpha = 0.8, width=1e-4, head_width=1e-2, length_includes_head=True, zorder=2)
 
 	# Set plot limits and title
 	ax.set_xlim(Xmin, Xmax)
 	ax.set_ylim(Ymin, Ymax)
-	ax.set_title(titlename, pad = 10)
+	# ax.set_title(titlename, pad = 10)
 	ax.set_aspect('equal')
 	ax.set_xticks([])
 	ax.set_yticks([])
 
 	# Save plot
-	fig.savefig(imgfile, dpi=150)
+	fig.savefig(imgfile, dpi=100)
 
 	plt.close()
 

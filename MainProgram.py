@@ -1,4 +1,4 @@
-import numpy
+import numpy as np
 import os
 import pandas
 import imageio
@@ -17,35 +17,39 @@ from modules import *
 from parameters import *
 
 os.system('clear')
-os.system('rm animation.gif')
 
 ########################################################################################
+
+# Remove old animation file if present
+animation_file = 'animation.gif'
+if os.path.exists(animation_file):
+	os.remove(animation_file)
 
 # Create a temporary directory for storing png and csv files
 temp_dir = 'tmp'
 if os.path.exists(temp_dir):
-    shutil.rmtree(temp_dir)
+	shutil.rmtree(temp_dir)
 os.mkdir(temp_dir)
 
 ########################################################################################
 
 # Generate random particle coordinations
-x = numpy.random.uniform(Xmin, Xmax, size=N)
-y = numpy.random.uniform(Ymin, Ymax, size=N)
-theta = numpy.random.uniform(-numpy.pi, numpy.pi, size=N)
+x = np.random.uniform(Xmin, Xmax, size=N)
+y = np.random.uniform(Ymin, Ymax, size=N)
+theta = np.random.uniform(-np.pi, np.pi, size=N)
 
 ########################################################################################
 
 particles = []
 for i in range(N):
-	a = make_particle(0., 0., 0., 0., 0.)
-	a.x = x[i]
-	a.y = y[i]
-	a.theta = theta[i]
-	a.vx = Pspeed * np.cos(a.theta)
-	a.vy = Pspeed * np.sin(a.theta)
+	single_particle = make_particle(0, 0, 0, 0, 0)
+	single_particle.x = x[i]
+	single_particle.y = y[i]
+	single_particle.theta = theta[i]
+	single_particle.vx = Pspeed * np.cos(single_particle.theta)
+	single_particle.vy = Pspeed * np.sin(single_particle.theta)
 
-	particles.append(a)
+	particles.append(single_particle)
 
 ########################################################################################
 
@@ -55,19 +59,20 @@ nsteps = int((Tend - Tstart)/deltat)
 
 print()
 
-for i in tqdm(range(nsteps), desc = 'Simulating particles'):
+for i in tqdm(range(nsteps), desc='Simulating particles'):
 	particles = time_update(particles, rad_influence, eta, Pspeed, deltat, bcond, Xmin, Xmax, Ymin, Ymax)
-	filename = os.path.join(temp_dir, 'timestep_' + str(i).zfill(5) + '.csv')
-	write_data(particles, filename, N)
+	filename = os.path.join(temp_dir, f'timestep_{i:0>{len(str(nsteps))}}.csv')
+	with open(filename, 'w') as f:
+		write_data(particles, f, N)
 
-	filename = os.path.join(temp_dir, 'timestep_' + str(i).zfill(5) + '.csv')
-	imgfile = os.path.join(temp_dir, 'image_' + str(i).zfill(5) + '.png')
-	titlename = r'$\eta =$' + str(eta)
-
-	df = pandas.read_csv(filename)
+	imgfile = os.path.join(temp_dir, f'image_{i:0>{len(str(nsteps))}}.png')
+	titlename = fr'$\eta = {eta}$'
+	filename = os.path.join(temp_dir, f'timestep_{i:0>{len(str(nsteps))}}.csv')
+	with open(filename, 'r') as f:
+		df = pandas.read_csv(f)
 
 	# Call plot_particles function
-	fig = plot_particles(df, Xmin, Xmax, Ymin, Ymax, titlename, imgfile)
+	fig = plot_particles(df, Xmin, Xmax, Ymin, Ymax, titlename, imgfile, rad_influence)
 
 ########################################################################################
 
@@ -81,10 +86,12 @@ png_files.sort()
 images = []
 
 # Loop through each file and add it to the list of images
-for i in tqdm(range(len(png_files)), desc = 'Generating video'):
-	image = plt.imread(png_files[i])
-	image = (image * 255).astype(numpy.uint8)
-	images.append(image)
+for i in tqdm(range(len(png_files)), desc='Generating video'):
+	filename = png_files[i]
+	with open(filename, 'rb') as f:
+		image = plt.imread(f)
+		image = (image * 255).astype(np.uint8)
+		images.append(image)
 
 # Create the GIF animation from the images
 imageio.mimsave('animation.gif', images, fps=10)

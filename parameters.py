@@ -18,7 +18,7 @@ N = 200
 # The noise intensity, which determines how much random motion is added to each particle at each time step.
 # This parameter controls the degree of stochasticity in the particle dynamics. Higher values of eta lead to more chaotic behavior.
 # Range from 0 to 1
-eta = 0.9
+eta = 0.8
 
 # The radius of influence of each particle, which determines which other particles it can interact with.
 # This parameter controls the spatial range of interactions between particles. Larger values of rad_influence lead to longer-ranged interactions.
@@ -26,7 +26,7 @@ rad_influence = 0.2*L
 
 # The time step used in the simulation.
 # This parameter controls the granularity of the simulation time evolution. Smaller values of deltat lead to more accurate simulations, but also increase the computational cost.
-deltat = 0.01
+deltat = 1e-2
 
 # The starting and ending times of the simulation, respectively.
 # This parameter controls the duration of the simulation. The simulation will run from Tstart to Tend.
@@ -35,4 +35,4 @@ Tend = 2
 
 # The speed of each particle.
 # This parameter controls the average magnitude of the particle velocities. Higher values of Pspeed lead to faster particle motion.
-Pspeed = 5
+Pspeed = 1
