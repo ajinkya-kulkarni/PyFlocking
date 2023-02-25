@@ -18,7 +18,7 @@ N = 200
 # The noise intensity, which determines how much random motion is added to each particle at each time step.
 # This parameter controls the degree of stochasticity in the particle dynamics. Higher values of eta lead to more chaotic behavior.
 # Range from 0 to 1
-eta = 0.1
+eta = 0.2
 
 # The radius of influence of each particle, which determines which other particles it can interact with.
 # This parameter controls the spatial range of interactions between particles. Larger values of rad_influence lead to longer-ranged interactions.

@@ -331,7 +331,7 @@ def plot_particles(df, Xmin, Xmax, Ymin, Ymax, titlename, imgfile, rad_influence
 	colors = colormap(norm(angles))
 	
 	# Plot circles and arrows
-	fig, ax = plt.subplots(figsize = (5, 5), constrained_layout = True)
+	fig, ax = plt.subplots(figsize = (2, 2), constrained_layout = True)
 	
 	for x, y, angle, magnitude, color in zip(df['x'], df['y'], angles, magnitudes, colors):
 		circle_size = 0.02
@@ -350,7 +350,7 @@ def plot_particles(df, Xmin, Xmax, Ymin, Ymax, titlename, imgfile, rad_influence
 	ax.set_yticks([])
 
 	# Save plot
-	fig.savefig(imgfile, dpi=100)
+	fig.savefig(imgfile, dpi=200)
 
 	plt.close()
 
