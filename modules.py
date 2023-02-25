@@ -3,7 +3,6 @@
 import numpy as np
 import os
 import pandas
-from scipy.spatial import KDTree
 
 import matplotlib.pyplot as plt
 from matplotlib.colors import Normalize
