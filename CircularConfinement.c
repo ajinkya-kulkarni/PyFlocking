@@ -1,3 +1,52 @@
+/*
+This is a simulation program for a system of self-propelled particles in a circular domain. It uses a force-based approach to model the interactions between the particles, and includes terms for particle-particle interactions, drag forces, and self-propulsion. The program outputs the positions and velocities of the particles at regular intervals, and also calculates statistics such as the average velocity and ring count.
+
+The program is written in C and requires the following input parameters:
+
+tf: the final time of the simulation (in time units)
+dt: the time step used in the simulation (in time units)
+datafreq: the frequency at which data is outputted (in time units)
+beta: a parameter that controls the strength of the self-propulsion force
+gamma: a parameter that controls the strength of the alignment force
+totalpart: the total number of particles in the system
+core: the number of particles in the core region of the circular domain
+ntotalin: the number of particles initially in the core region
+xoutw: the number of particles initially outside the core region
+ga: the acceleration due to gravity (in distance units per time unit squared)
+rho: the density of the particles (in mass units per distance unit cubed)
+hsquare: the volume of the circular domain (in distance units cubed)
+h: the spacing between cells in the simulation grid (in distance units)
+cell_length: the length of the cells in the simulation grid (in distance units)
+dm: the diameter of the particles (in distance units)
+mass: the mass of the particles (in mass units)
+cv: a parameter that controls the strength of the drag force
+limit_overlap: a threshold value for the amount of overlap allowed between particles
+omega: a parameter that controls the strength of the alignment force
+pi: the mathematical constant pi
+r_cavity1: the radius of the circular cavity at the center of the domain
+x_c: the x-coordinate of the center of the circular domain
+y_c: the y-coordinate of the center of the circular domain
+length: the length of the domain (in distance units)
+cellfreq: the frequency at which the simulation grid is updated (in time units)
+n_influ: the number of particles that influence each particle in the simulation
+startsstate: the time step at which the system reaches steady state
+startsstate1: the time step at which the core particle count reaches a steady state
+startsstate2: the time step at which the average velocity reaches a steady state
+startsstate3: the time step at which the ring count reaches a steady state
+startsstate4: the time step at which the variance in ring count reaches a steady state
+packet: the number of particles in each ring of the circular domain
+sstate1: the time step at which the initial core particle count is reached
+sstate2: the time step at which the initial average velocity is reached
+sstate3: the time step at which the initial ring count is reached
+sstate4: the time step at which the initial variance in ring count is reached
+The program uses the following functions:
+
+force_calc: calculates the forces acting on each particle in the system, including particle-particle interactions, drag forces, and self-propulsion
+
+* Authors: Ajinkya Kulkarni, Department of Applied Mechanics, IIT Madras, Chennai, India
+
+*/
+
 #include<stdio.h>
 #include<math.h>
 #include<time.h>
