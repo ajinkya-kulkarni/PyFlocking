@@ -1,0 +1,11 @@
+cff-version: 1.1.0
+message: "If you use this software, please cite it as below."
+authors:
+  - family-names: Ajinkya
+    given-names: Kulkarni
+    orcid: https://orcid.org/0000-0003-1423-3676
+title: PyFlocking
+version: v1.0
+date-released: 2023-04-09
+doi: 10.5281/zenodo.7811623
+url: "https://github.com/ajinkya-kulkarni/PyFlocking"
