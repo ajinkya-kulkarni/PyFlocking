@@ -1,9 +1,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7811623.svg)](https://doi.org/10.5281/zenodo.7811623)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/ajinkya-kulkarni/PyFlocking)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/ajinkya-kulkarni/PyFlocking)
-![GitHub all releases](https://img.shields.io/github/downloads/ajinkya-kulkarni/PyFlocking/total)
-![GitHub language count](https://img.shields.io/github/languages/count/ajinkya-kulkarni/PyFlocking)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/ajinkya-kulkarni/PyFlocking)
 
 # Viscek Model Simulation
 
