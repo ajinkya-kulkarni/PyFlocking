@@ -16,7 +16,7 @@ To run the simulation, you will need to have the following dependencies installe
 - imageio
 - tqdm
 
-You can install the dependencies using the following command:
+You can install the latest versions of the dependencies using the following command:
 `pip install numpy pandas matplotlib imageio tqdm`
 
 ## Output
