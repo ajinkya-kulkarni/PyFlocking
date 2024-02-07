@@ -1,5 +1,5 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7811623.svg)](https://doi.org/10.5281/zenodo.7811623)
+[![DOI](https://zenodo.org/badge/432223266.svg)](https://zenodo.org/doi/10.5281/zenodo.7811622)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/ajinkya-kulkarni/PyFlocking)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/ajinkya-kulkarni/PyFlocking)
 
